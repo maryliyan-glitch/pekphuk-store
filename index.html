@@ -11,7 +11,7 @@
       color: #222;
       display: flex;
       justify-content: center;
-      padding: 20px;
+      padding: 15px;
       margin: 0;
       min-height: 100vh;
       box-sizing: border-box;
@@ -45,6 +45,7 @@
       padding: 6px;
       border: 2px dashed #333;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      overflow-x: auto;
     }
     .tab-btn {
       flex: 1;
@@ -56,6 +57,7 @@
       font-size: 0.75rem;
       cursor: pointer;
       text-transform: capitalize;
+      white-space: nowrap;
       transition: all 0.2s;
     }
     .tab-btn:hover {
@@ -78,30 +80,31 @@
     .card {
       background: rgba(255, 255, 255, 0.95);
       border: 2px dashed #333;
-      padding: 20px 25px;
+      padding: 15px 20px;
       margin-bottom: 20px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
     }
     h2 {
       text-align: center;
       margin-top: 0;
       border-bottom: 2px solid #333;
       padding-bottom: 10px;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
 
     /* Category Grid Layout (Home Tab) */
     .category-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: 12px;
       margin-top: 15px;
     }
     .category-card {
       background: #e8f5e9;
       border: 1px solid #c8e6c9;
       border-radius: 12px;
-      padding: 14px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -162,12 +165,12 @@
     }
     .cat-title {
       font-weight: bold;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #333;
       line-height: 1.2;
     }
     .cat-count {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: #555;
       white-space: nowrap;
       font-weight: bold;
@@ -205,7 +208,7 @@
     }
     .section-title {
       font-weight: bold;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
     .form-group {
       display: flex;
@@ -270,7 +273,7 @@
     th, td {
       text-align: left;
       padding: 6px 4px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
     th {
       border-bottom: 1px solid #333;
@@ -292,14 +295,14 @@
     .actions button {
       flex: 1;
       padding: 8px;
-      min-width: 110px;
+      min-width: 100px;
     }
     .output-box {
       margin-top: 15px;
       display: none;
     }
     .total-pay {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: bold;
       margin-bottom: 12px;
     }
@@ -307,9 +310,10 @@
       background: #f9f9f9;
       border-left: 3px solid #333;
       padding: 10px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       line-height: 1.5;
       margin-bottom: 15px;
+      word-break: break-word;
     }
     .inventory-list-table td {
       padding: 6px 4px;
@@ -321,6 +325,7 @@
       justify-content: flex-end;
       align-items: center;
     }
+
     /* Vector History Styling */
     .vector-log-item {
       background: #fafafa;
@@ -328,17 +333,19 @@
       border-radius: 6px;
       padding: 10px 12px;
       margin-bottom: 8px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      overflow-x: auto;
     }
     .vector-log-header {
       display: flex;
       justify-content: space-between;
       font-weight: bold;
       margin-bottom: 4px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: #555;
       border-bottom: 1px dashed #ccc;
       padding-bottom: 4px;
+      gap: 10px;
     }
     .vector-row {
       display: flex;
@@ -346,6 +353,37 @@
       align-items: center;
       padding: 3px 0;
       border-bottom: 1px dotted #eee;
+      white-space: nowrap;
+    }
+
+    /* MOBILE RESPONSIVE MEDIA QUERY */
+    @media (max-width: 480px) {
+      body {
+        padding: 8px;
+      }
+      .card {
+        padding: 12px 10px;
+      }
+      .category-grid {
+        gap: 8px;
+      }
+      .tab-btn {
+        font-size: 0.68rem;
+        padding: 6px 2px;
+      }
+      /* Stack calculation checkout buttons on mobile */
+      .output-box div[style*="display: flex"] {
+        flex-direction: column;
+        gap: 8px !important;
+      }
+      table th, table td {
+        font-size: 0.78rem;
+        padding: 4px 2px;
+      }
+      input, select {
+        padding: 5px;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
@@ -366,7 +404,7 @@
     <div id="tab-home" class="tab-section active">
       <div class="card">
         <h2>Pekphuk Store Calculator</h2>
-        <div style="text-align: center; font-size: 0.9rem; margin-bottom: 10px; color: #555;">
+        <div style="text-align: center; font-size: 0.85rem; margin-bottom: 10px; color: #555;">
           Click a category tile to view items
         </div>
 
@@ -419,10 +457,10 @@
         <table>
           <thead>
             <tr>
-              <th style="width: 38%;">Item</th>
+              <th style="width: 36%;">Item</th>
               <th style="width: 18%;">Qty</th>
               <th style="width: 20%;">Price</th>
-              <th style="width: 20%;">Total</th>
+              <th style="width: 22%;">Total</th>
               <th style="width: 4%;"></th>
             </tr>
           </thead>
@@ -515,8 +553,8 @@
         <div class="section-header-bar" style="border-left-color: #607d8b;">
           <span class="section-title">Vector Stock Transaction History</span>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <span style="font-size: 0.8rem; color: #555;">Tracks additions (date-only) and checkouts (with time).</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 6px; flex-wrap: wrap;">
+          <span style="font-size: 0.78rem; color: #555;">Tracks additions (date-only) and checkouts (with time).</span>
           <button type="button" class="btn-danger" onclick="resetHistory()" style="padding: 4px 8px; font-size: 0.75rem;">Reset History</button>
         </div>
         <div id="vector-history-container">
@@ -726,11 +764,10 @@
       }
 
       if (delta !== 0 || existingIndex === -1) {
-        const todayDateStr = new Date().toLocaleDateString(); // Date only for restocks
+        const todayDateStr = new Date().toLocaleDateString();
         const transactionType = delta >= 0 ? "RESTOCK / ADD" : "ADJUSTMENT / REDUCE";
         const operatorSymbol = delta >= 0 ? "+" : "-";
 
-        // Group restocks under the same date-only header
         let existingLog = stockHistory.find(l => l.type === transactionType && l.timestamp === todayDateStr);
 
         const entryItem = { name: name.toUpperCase(), initial: initialStock, delta: Math.abs(delta), final: newStock };
@@ -741,7 +778,7 @@
           const logEntry = {
             type: transactionType,
             operator: operatorSymbol,
-            timestamp: todayDateStr, // Date only
+            timestamp: todayDateStr,
             entries: [entryItem]
           };
           stockHistory.push(logEntry);
@@ -906,12 +943,11 @@
         if (stockUpdated) {
           localStorage.setItem("pekphukInventory", JSON.stringify(storeItems));
 
-          // Each checkout gets a unique full timestamp with time so they create separate vector blocks
           const exactTimestampWithTime = new Date().toLocaleString();
           const checkoutLog = {
             type: "CHECKOUT / SOLD",
             operator: "-",
-            timestamp: exactTimestampWithTime, // Full date and time
+            timestamp: exactTimestampWithTime,
             entries: transactionEntries
           };
           stockHistory.push(checkoutLog);
