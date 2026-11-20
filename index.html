@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pekphuk Store Calculator</title>
+  <title>Sari-Sari Store Calculator</title>
   <style>
     body {
       font-family: 'Courier New', Courier, monospace;
@@ -387,9 +387,7 @@
   </style>
 </head>
 <body>
-
   <div class="container">
-
     <!-- Navigation Tabs -->
     <div class="nav-tabs">
       <button type="button" class="tab-btn active" onclick="switchTab('home', this)">home</button>
@@ -402,15 +400,13 @@
     <!-- TAB 1: HOME -->
     <div id="tab-home" class="tab-section active">
       <div class="card">
-        <h2>Pekphuk Store Calculator</h2>
+        <h2>Sari-Sari Store Calculator</h2>
         <div style="text-align: center; font-size: 0.85rem; margin-bottom: 10px; color: #555;">
           Click a category tile to view items
         </div>
-
         <div class="category-grid" id="category-grid-container">
           <!-- Populated dynamically -->
         </div>
-
         <div class="actions" style="border-bottom: none; margin-bottom: 0; padding-top: 15px;">
           <button type="button" class="btn-primary" onclick="switchTabByName('manage')">+ Manage Inventory</button>
           <button type="button" class="btn-compute" onclick="switchTabByName('calculation')">Open Calculator</button>
@@ -424,11 +420,9 @@
         <div class="section-header-bar">
           <span class="section-title" id="items-header-title">Store Inventory & Stock List</span>
         </div>
-
         <div class="filter-bar" id="items-filter-bar">
           <!-- Populated dynamically -->
         </div>
-
         <table class="inventory-list-table">
           <thead>
             <tr>
@@ -449,9 +443,8 @@
     <div id="tab-calculation" class="tab-section">
       <div class="card">
         <div class="section-header-bar" style="border-left-color: #2e7d32;">
-          <span class="section-title">Pekphuk Store - Purchase Calculator</span>
+          <span class="section-title">Sari-Sari Store - Purchase Calculator</span>
         </div>
-
         <table>
           <thead>
             <tr>
@@ -466,19 +459,15 @@
             <!-- Rows added dynamically -->
           </tbody>
         </table>
-
         <!-- Global Datalist for Autocomplete Suggestions -->
         <datalist id="inventory-suggestions"></datalist>
-
         <div class="actions">
           <button type="button" class="btn-compute" onclick="computeTotal()">Compute</button>
           <button type="button" onclick="addItemRow()">Add Items</button>
           <button type="button" style="background-color: #a86b32; color: #fff; border-color: #8c5521;" onclick="startOver()">Start Over</button>
         </div>
-
         <div id="output" class="output-box">
           <div class="total-pay" id="total-display">Total Price to Pay: ₱0</div>
-
           <div class="dot-product">
             <strong>Dot product:</strong><br />
             Step 1:<br />
@@ -488,7 +477,6 @@
             Step 3:<br />
             <span id="step-3"></span>
           </div>
-
           <!-- Action buttons after compute -->
           <div style="display: flex; gap: 10px;">
             <button type="button" class="btn-compute" style="flex: 1; padding: 10px;" onclick="confirmCheckout(true)">Checkout & Deduct Stock</button>
@@ -504,7 +492,6 @@
         <div class="section-header-bar">
           <span class="section-title">Manage Inventory (Add / Edit / Remove)</span>
         </div>
-
         <form onsubmit="saveInventoryItem(event)">
           <div class="form-group">
             <input type="text" id="inv-name" placeholder="Product name (e.g. milo)" required />
@@ -527,7 +514,6 @@
           </div>
           <button type="submit" class="btn-primary" style="width: 100%; margin-top: 4px;">Save Item</button>
         </form>
-
         <table class="inventory-list-table" style="margin-top: 15px;">
           <thead>
             <tr>
@@ -560,7 +546,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <script>
@@ -578,7 +563,7 @@
       { name: "coca-cola 330ml", category: "Beverages", stock: 24, price: 20 },
       { name: "milo sachet", category: "Beverages", stock: 50, price: 8 },
       { name: "great taste granules", category: "Beverages", stock: 30, price: 7 },
-      
+
       { name: "piattos cheese", category: "Snacks & Confectionery", stock: 15, price: 18 },
       { name: "nova cheddar", category: "Snacks & Confectionery", stock: 20, price: 18 },
       { name: "jack 'n jill clover chips", category: "Snacks & Confectionery", stock: 12, price: 15 },
@@ -665,8 +650,8 @@
       filterBar.innerHTML = filterHtml;
 
       const readonlyBody = document.getElementById("readonly-items-body");
-      const filteredItems = currentSelectedCategory === "All" 
-        ? storeItems 
+      const filteredItems = currentSelectedCategory === "All"
+        ? storeItems
         : storeItems.filter(i => i.category === currentSelectedCategory);
 
       if (filteredItems.length === 0) {
@@ -752,8 +737,8 @@
 
       if (existingIndex !== -1) {
         initialStock = storeItems[existingIndex].stock;
-        delta = newStock - initialStock; 
-        
+        delta = newStock - initialStock;
+
         storeItems[existingIndex].price = price;
         storeItems[existingIndex].category = category;
         storeItems[existingIndex].stock = newStock;
@@ -801,7 +786,7 @@
       document.getElementById("inv-category").value = item.category || "Others";
       document.getElementById("inv-stock").value = item.stock ?? 0;
       document.getElementById("inv-price").value = item.price;
-      
+
       refreshInventoryUI();
       switchTabByName("manage");
     }
@@ -976,6 +961,5 @@
     refreshInventoryUI();
     addItemRow();
   </script>
-
 </body>
 </html>
